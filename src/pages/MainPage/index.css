@@ -1,0 +1,37 @@
+/* Mainpage.css */
+
+/* Styles for larger screens */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Adjust the height as needed */
+}
+
+.content-container {
+    display: flex;
+    flex: 1; /* Take up remaining space */
+}
+
+.sidebar {
+    width: 25%; /* Adjust the width of the sidebar */
+    background-color: #f0f0f0; /* Example background color */
+    padding: 20px; /* Example padding */
+}
+
+.product-display {
+    flex: 1; /* Take up remaining space */
+    padding: 20px; /* Example padding */
+    /* Add any additional styling as needed */
+}
+
+/* Styles for smaller screens (mobile) */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .sidebar {
+        width: 100%; /* Take up full width */
+        margin-bottom: 20px; /* Add space between sidebar and product display */
+    }
+}
