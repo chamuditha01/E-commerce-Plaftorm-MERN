@@ -10,28 +10,47 @@
 .content-container {
     display: flex;
     flex: 1; /* Take up remaining space */
+    margin-top:-30px;
 }
 
 .sidebar {
-    width: 25%; /* Adjust the width of the sidebar */
+    width: 22%; /* Adjust the width of the sidebar */
     background-color: #f0f0f0; /* Example background color */
     padding: 20px; /* Example padding */
+    position:sticky;
+    top: 150px;
+    height: 79vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    z-index: 1;
+
+    /* Add any additional styling as needed */
 }
 
 .product-display {
     flex: 1; /* Take up remaining space */
     padding: 20px; /* Example padding */
     /* Add any additional styling as needed */
+    
 }
 
 /* Styles for smaller screens (mobile) */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .content-container {
         flex-direction: column; /* Stack items vertically */
     }
 
     .sidebar {
         width: 100%; /* Take up full width */
-        margin-bottom: 20px; /* Add space between sidebar and product display */
+        margin-bottom: 20px; 
+        z-index: 1;
+        height: auto;/* Add space between sidebar and product display */
     }
 }
+
+  .product-display {
+    flex-grow: 1; /* Allow the product display to occupy remaining space */
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the display area */
+  }
+  
+  

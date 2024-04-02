@@ -4,7 +4,7 @@ import { FaRegUser } from "react-icons/fa6";
 
 const Navbar = () => {
   return (
-    <div>
+    <div style={{position:'fixed',top:'0',zIndex:'2',width:'100%',backgroundColor:'white',borderBottom:'1px solid black'}}>
       <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
@@ -21,7 +21,7 @@ const Navbar = () => {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style={{zIndex:'2'}}>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">
@@ -104,7 +104,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <form class="d-flex" role="search" id="searchbar">
+      <div style={{backgroundColor:'white',borderBottom:'30px solid white'}}>
+      <form class="d-flex" role="search" id="searchbar" >
         <input
           style={{
             borderTopLeftRadius: "25px",
@@ -134,7 +135,8 @@ const Navbar = () => {
             width: "50px",
           }}
         />
-      </form>
+      </form></div>
+      
     </div>
   );
 };

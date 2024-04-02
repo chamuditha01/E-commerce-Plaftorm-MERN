@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient,ObjectID } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const app = express();
 app.use(express.json());
 const PORT = 5002;
 const multer = require('multer');
+
 // Middleware for handling CORS
 app.use(cors());
+
 // Multer configuration
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -16,21 +18,35 @@ const upload = multer({ storage });
 const uri = 'mongodb+srv://user1:Chamu123@cluster0.alycqcg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const dbName = 'Ecommerce1'; // Replace 'your_database_name' with your actual database name
 
+// MongoDB client instance and connection pool
+let client;
 
-// Function to connect to MongoDB and return the collection
+async function connectToMongoDB() {
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      poolSize: 10 // Example: setting pool size to 10 connections
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    throw error;
+  }
+}
+
+// Middleware function to add MongoDB client to request object
+app.use((req, res, next) => {
+  req.dbClient = client;
+  next();
+});
+
+// Function to get database instance
 async function getDb() {
-  const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   return client.db(dbName);
 }
 
-async function connectToMongoDB(collectionName) {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-  await client.connect();
-  return client.db(dbName).collection(collectionName);
-}
-
-
-
+// Route to fetch products
 app.get('/getProducts', async (req, res) => {
   try {
     const db = await getDb();
@@ -42,8 +58,14 @@ app.get('/getProducts', async (req, res) => {
   }
 });
 
+// Start the server
+async function startServer() {
+  try {
+    await connectToMongoDB();
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  } catch (error) {
+    console.error('Failed to start server:', error);
+  }
+}
 
-
-
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+startServer();

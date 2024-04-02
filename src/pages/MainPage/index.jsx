@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import ProductCard from "../../Components/Atoms/ProductCard";
 import Sidebar from "../../Components/Atoms/Sidebar";
+
 const Mainpage = () => {    
     
     const [minPrice, setMinPrice] = useState(0);
@@ -14,23 +15,28 @@ const Mainpage = () => {
         setMinPrice(min);
         setMaxPrice(max);
     };
+
+    
     return (
         <div className="main-container">
             <Navbar/>
-            <hr />
+          
             <div className="content-container">
-                <div className="sidebar">
+                <div className="sidebar" style={{marginTop:'-30px'}}>
                     {/* Sidebar content goes here */}
-                    Sidebar Content
                     <Sidebar onPriceChange={handlePriceChange} />
                 </div>
-                <div className="product-display">
+                <div className="product-display" style={{marginTop:'180px'}}>
                     {/* Product display content goes here */}
-                   
                     <ProductCard minPrice={minPrice} maxPrice={maxPrice} />
+                   
+                    {/* Add additional content to ensure overflow */}
+
                 </div>
             </div>
         </div>
     );
 }
+
 export default Mainpage;
+6

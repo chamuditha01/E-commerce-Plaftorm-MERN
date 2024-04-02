@@ -1,0 +1,5 @@
+/* CSS */
+#card1:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adjust the shadow as needed */
+    transition: 0.3s; /* Add a smooth transition effect */
+}
