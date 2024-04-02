@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
-
+require('dotenv').config();
 const app = express();
 app.use(express.json());
 const PORT = 5002;
@@ -15,7 +15,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // MongoDB connection URI
-const uri = 'mongodb+srv://user1:Chamu123@cluster0.alycqcg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = process.env.REACT_APP_URI;
+
 const dbName = 'Ecommerce1'; // Replace 'your_database_name' with your actual database name
 
 // MongoDB client instance and connection pool
