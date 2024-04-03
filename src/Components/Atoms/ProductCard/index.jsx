@@ -62,7 +62,7 @@ const ProductCard = ({ minPrice, maxPrice, searchValue }) => {
         <div >
             {filteredProducts.length === 0 ? (
                 <div>
-                <p>No products available</p>
+                <h1>No products available for that criteria</h1><br></br>
                 <ImSad2 size={100}  color='red' />
                 </div>
             ) : (
